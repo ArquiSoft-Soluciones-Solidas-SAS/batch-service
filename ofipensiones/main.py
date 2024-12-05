@@ -3,13 +3,14 @@ import logging
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from apscheduler.schedulers.background import BackgroundScheduler
+from batch.report_generator import generate_reports
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def printit():
-    logger.info(f"Tarea ejecutada: {datetime.datetime.now()}")
+    logger.info(f"Tarea ejecutada: {generate_reports()}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
