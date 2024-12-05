@@ -27,7 +27,8 @@ def generate_reports():
     db = client['reportes-query-service']
     collection = db['institucion']
     # Devolvemos los nombres de las instituciones: nombreInstitucion
-    instituciones = collection.find({}, {"nombreInstitucion": 1})
+    inst = collection.find({}, {"nombreInstitucion": 1})
+    instituciones = list(inst)
     logger.info(f"Instituciones: {instituciones}")
     r = redis.StrictRedis(host='10.128.0.88', port=6379, db=0)
 
